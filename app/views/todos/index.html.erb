@@ -1,0 +1,51 @@
+<section id="todoapp" class="<%= "has_todos" if @todos.unscoped.count > 0 %> <%= todos_filter_class %>">
+
+
+  <header id="header">
+    <h1>todos</h1>
+    <%= form_for(Todo.new, remote: true) do |f| %>
+      <%= f.text_field :title, placeholder: "What needs to be done?", id: "new-todo", autofocus: true, "data-behavior" => "submit_on_enter" %>
+    <% end %>
+  </header>
+
+
+  <section id="main">
+    <%= form_tag(toggle_all_todos_path, method: :post, remote: true) do %>
+      <input name="completed" id="toggle-all" type="checkbox" value="true" data-behavior="submit_on_check" <%= "checked" if @todos.active.count == 0 %>>
+    <% end %>
+    <label for="toggle-all">Mark all as complete</label>
+    <ul id="todo-list">
+      <%= render @todos.all %>
+    </ul>
+  </section>
+
+
+  <%= render "footer" %>
+
+</section>
+
+
+<footer id="info">
+  <p>Created by <a href="mailto: github@gdi2290.com">PatrickJS</a></p>
+</footer>
+
+<div id="bootstrapButton" style="margin-left:5em">
+  <h1>Rendered</h1>
+  <ul>
+    <li>
+      <h1 style="color:green">✔ Server</h1>
+    </li>
+    <li>
+      <h1 style="color:red">✘ Client</h1>
+    </li>
+  </ul>
+  <h1>Application</h1>
+  <ul>
+    <li>
+      <h1 style="color:green">✔ Server</h1>
+    </li>
+    <li>
+      <h1 style="color:red">✘ Client</h1>
+    </li>
+  </ul>
+</div>

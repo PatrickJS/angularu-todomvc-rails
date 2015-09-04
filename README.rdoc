@@ -1,3 +1,0 @@
-== TodoMVC on Rails
-
-TodoMVC Rails for AngularU
